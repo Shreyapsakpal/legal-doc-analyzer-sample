@@ -1,7 +1,6 @@
 import streamlit as st # type: ignore
 import google.generativeai as genai # type: ignore
-from dotenv import load_dotenv # type: ignore
-import os
+import os 
 from PyPDF2 import PdfReader # type: ignore
 import docx # type: ignore
 import sqlite3
@@ -66,7 +65,7 @@ def authenticate_user(username, password):
 
 
 # ---------- CONFIG ----------
-load_dotenv()
+
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 st.set_page_config(page_title="AI Legal Analyzer", layout="wide")
