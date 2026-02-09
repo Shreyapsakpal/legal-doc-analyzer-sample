@@ -1,6 +1,6 @@
 import streamlit as st # type: ignore
 import google.generativeai as genai # type: ignore
-import os 
+import os
 from PyPDF2 import PdfReader # type: ignore
 import docx # type: ignore
 import sqlite3
@@ -208,14 +208,12 @@ def extract_text(file):
 
 # ---------- AI FUNCTION ----------
 def analyze_legal_text(text):
-   
-   prompt = f"""
+    prompt = f"""
 You are a legal assistant.
 
 Read the legal document below and explain it in VERY SIMPLE words.
 
 FORMAT THE RESPONSE STRICTLY LIKE THIS (DO NOT CHANGE ORDER):
-
 
 ENTITIES:
 - Company names
@@ -242,7 +240,6 @@ SUMMARY:
 - Then give 10–12 bullet points highlighting key points.
 - Do NOT make everything bullet points.
 
-
 RULES:
 - Simple English only
 - Do NOT mix sections
@@ -253,10 +250,9 @@ DOCUMENT:
 {text}
 """
 
-
-   model = genai.GenerativeModel("gemini-2.5-flash")
-   response = model.generate_content(prompt)
-   return response.text
+    model = genai.GenerativeModel("gemini-2.5-flash")
+    response = model.generate_content(prompt)
+    return response.text
 
 def translate_summary(text, target_language):
     if target_language == "English":
@@ -317,9 +313,7 @@ def split_sections(ai_text):
 
     return st.session_state.sections
 
-    model = genai.GenerativeModel("gemini-2.5-flash")
-    response = model.generate_content(prompt)
-    return response.text
+    
 
 # ---------- INPUT ----------
 st.subheader("Upload Document or Enter Text")
