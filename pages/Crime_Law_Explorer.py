@@ -176,4 +176,12 @@ if st.button("🤖 Explain in simple words"):
     st.session_state.issue,
     data
 )
-       st.success(explanation)
+       st.markdown(
+    f"""
+    <div class="law-card" style="color:#0f3d2e;">
+        {explanation}
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
