@@ -67,7 +67,7 @@ def authenticate_user(username, password):
 
 # ---------- CONFIG ----------
 load_dotenv()
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
 
 st.set_page_config(page_title="AI Legal Analyzer", layout="wide")
 
@@ -209,28 +209,30 @@ def extract_text(file):
 
 
 # ---------- AI FUNCTION ----------
-def analyze_legal_text(text: str) -> str:
-    if not text or len(text.strip()) == 0:
-        return "No text provided."
-
-    # LIMIT INPUT (CRITICAL)
-    text = text[:6000]
-
+def analyze_legal_text(text):
     prompt = f"""
-    You are a legal assistant.
-    Analyze the following legal document and provide:
-    1. A short summary
-    2. Important clauses
-    3. Key legal terms
+    Analyze the following legal text and provide:
+    1. Summary
+    2. Key entities
+    3. Important dates
+    4. Clauses
 
     Legal Text:
     {text}
     """
 
     model = genai.GenerativeModel("gemini-1.5-flash")
-    response = model.generate_content(prompt)
+
+    response = model.generate_content(
+        prompt,
+        generation_config={
+            "max_output_tokens": 800,
+            "temperature": 0.3
+        }
+    )
 
     return response.text
+
 
 def translate_summary(text, target_language):
     if target_language == "English":
@@ -247,7 +249,14 @@ TEXT:
 """
 
     model = genai.GenerativeModel("gemini-1.5-flash")
-    response = model.generate_content(prompt)
+    response = model.generate_content(
+    prompt,
+    generation_config={
+        "max_output_tokens": 800,
+        "temperature": 0.3
+    }
+)
+
     return response.text
 
 
