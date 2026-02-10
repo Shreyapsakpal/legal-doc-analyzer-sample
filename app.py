@@ -221,7 +221,7 @@ def analyze_legal_text(text):
     {text}
     """
 
-    model = genai.GenerativeModel("gemini-1.5-flash")
+    model = genai.GenerativeModel("models/gemini-pro")
 
     response = model.generate_content(
         prompt,
@@ -232,6 +232,7 @@ def analyze_legal_text(text):
     )
 
     return response.text
+
 
 
 def translate_summary(text, target_language):
@@ -248,7 +249,8 @@ TEXT:
 {text}
 """
 
-    model = genai.GenerativeModel("gemini-1.5-flash")
+    model = genai.GenerativeModel("models/gemini-pro")
+
     response = model.generate_content(
     prompt,
     generation_config={
@@ -300,7 +302,8 @@ def split_sections(ai_text):
 
     return st.session_state.sections
 
-    model = genai.GenerativeModel("gemini-1.5-flash")
+    model = genai.GenerativeModel("models/gemini-pro")
+
     response = model.generate_content(prompt)
     return response.text
 
