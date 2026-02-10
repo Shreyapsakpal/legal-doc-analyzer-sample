@@ -12,6 +12,9 @@ from reportlab.lib.pagesizes import A4 # type: ignore
 from reportlab.pdfgen import canvas # pyright: ignore[reportMissingModuleSource]
 import io
 
+genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
+
+
 # ---------- SESSION STATE INIT ----------
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
@@ -211,13 +214,13 @@ def extract_text(file):
 # ---------- AI FUNCTION ----------
 def analyze_legal_text(text):
     prompt = f"""
-    Analyze the following legal text and provide:
-    1. Summary
-    2. Key entities
-    3. Important dates
-    4. Clauses
+    Analyze the following legal document and provide:
+    - Summary
+    - Key clauses
+    - Obligations
+    - Risks
 
-    Legal Text:
+    Text:
     {text}
     """
 
