@@ -1,5 +1,6 @@
 import streamlit as st # type: ignore
 import google.generativeai as genai # type: ignore
+from dotenv import load_dotenv # type: ignore
 import os
 from PyPDF2 import PdfReader # type: ignore
 import docx # type: ignore
@@ -65,7 +66,7 @@ def authenticate_user(username, password):
 
 
 # ---------- CONFIG ----------
-
+load_dotenv()
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 st.set_page_config(page_title="AI Legal Analyzer", layout="wide")
@@ -206,52 +207,29 @@ def extract_text(file):
 
     return ""
 
+
 # ---------- AI FUNCTION ----------
-def analyze_legal_text(text):
+def analyze_legal_text(text: str) -> str:
+    if not text or len(text.strip()) == 0:
+        return "No text provided."
+
+    # LIMIT INPUT (CRITICAL)
+    text = text[:6000]
+
     prompt = f"""
-You are a legal assistant.
+    You are a legal assistant.
+    Analyze the following legal document and provide:
+    1. A short summary
+    2. Important clauses
+    3. Key legal terms
 
-Read the legal document below and explain it in VERY SIMPLE words.
+    Legal Text:
+    {text}
+    """
 
-FORMAT THE RESPONSE STRICTLY LIKE THIS (DO NOT CHANGE ORDER):
-
-ENTITIES:
-- Company names
-- Client names
-- Person names
-
-KEY PARTIES:
-- Service Provider
-- Client
-
-IMPORTANT DATES:
-- Start date
-- End date
-- Any deadlines
-
-CLAUSES:
-- Important clauses explained simply
-
-RISKS:
-- Possible risks or penalties
-
-SUMMARY:
-- First, write a short paragraph (15–16 lines) explaining the document in simple language.
-- Then give 10–12 bullet points highlighting key points.
-- Do NOT make everything bullet points.
-
-RULES:
-- Simple English only
-- Do NOT mix sections
-- Do NOT repeat data
-- Do NOT add extra headings
-
-DOCUMENT:
-{text}
-"""
-
-    model = genai.GenerativeModel("gemini-2.5-flash")
+    model = genai.GenerativeModel("gemini-1.5-flash")
     response = model.generate_content(prompt)
+
     return response.text
 
 def translate_summary(text, target_language):
@@ -268,7 +246,7 @@ TEXT:
 {text}
 """
 
-    model = genai.GenerativeModel("gemini-2.5-flash")
+    model = genai.GenerativeModel("gemini-1.5-flash")
     response = model.generate_content(prompt)
     return response.text
 
@@ -313,7 +291,9 @@ def split_sections(ai_text):
 
     return st.session_state.sections
 
-    
+    model = genai.GenerativeModel("gemini-1.5-flash")
+    response = model.generate_content(prompt)
+    return response.text
 
 # ---------- INPUT ----------
 st.subheader("Upload Document or Enter Text")
@@ -342,7 +322,11 @@ if st.button("🤖 Analyze Document"):
             st.error("Please upload a file or enter text")
         else:
              # 2️⃣ Call Gemini
-            analysis_text = analyze_legal_text(text)
+            with st.spinner("Analyzing legal document..."):
+               with st.spinner("Analyzing legal document..."):
+                 analysis_text = analyze_legal_text(text)
+
+  
 
             # 3️⃣ STEP 3 STARTS HERE
             st.session_state.sections = split_sections(analysis_text)
