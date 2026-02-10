@@ -323,7 +323,7 @@ def split_sections(ai_text):
 
     return st.session_state.sections
 
-    model = genai.GenerativeModel("models/gemini-pro")
+    model = genai.GenerativeModel("gemini-2.5-flash")
 
     response = model.generate_content(prompt)
     return response.text
