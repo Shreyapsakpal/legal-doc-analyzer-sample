@@ -213,30 +213,55 @@ def extract_text(file):
 
 # ---------- AI FUNCTION ----------
 def analyze_legal_text(text):
-    prompt = f"""
-    Analyze the following legal document and provide:
-    - Summary
-    - Key clauses
-    - Obligations
-    - Risks
+   
+   prompt = f"""
+You are a legal assistant.
 
-    Text:
-    {text}
-    """
+Read the legal document below and explain it in VERY SIMPLE words.
 
-    model = genai.GenerativeModel("models/gemini-pro")
-
-    response = model.generate_content(
-        prompt,
-        generation_config={
-            "max_output_tokens": 800,
-            "temperature": 0.3
-        }
-    )
-
-    return response.text
+FORMAT THE RESPONSE STRICTLY LIKE THIS (DO NOT CHANGE ORDER):
 
 
+ENTITIES:
+- Company names
+- Client names
+- Person names
+
+KEY PARTIES:
+- Service Provider
+- Client
+
+IMPORTANT DATES:
+- Start date
+- End date
+- Any deadlines
+
+CLAUSES:
+- Important clauses explained simply
+
+RISKS:
+- Possible risks or penalties
+
+SUMMARY:
+- First, write a short paragraph (15–16 lines) explaining the document in simple language.
+- Then give 10–12 bullet points highlighting key points.
+- Do NOT make everything bullet points.
+
+
+RULES:
+- Simple English only
+- Do NOT mix sections
+- Do NOT repeat data
+- Do NOT add extra headings
+
+DOCUMENT:
+{text}
+"""
+
+
+   model = genai.GenerativeModel("gemini-2.5-flash")
+   response = model.generate_content(prompt)
+   return response.text
 
 def translate_summary(text, target_language):
     if target_language == "English":
@@ -252,17 +277,10 @@ TEXT:
 {text}
 """
 
-    model = genai.GenerativeModel("models/gemini-pro")
-
-    response = model.generate_content(
-    prompt,
-    generation_config={
-        "max_output_tokens": 800,
-        "temperature": 0.3
-    }
-)
-
+    model = genai.GenerativeModel("gemini-2.5-flash")
+    response = model.generate_content(prompt)
     return response.text
+
 
 
 def split_sections(ai_text):
