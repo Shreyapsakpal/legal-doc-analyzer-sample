@@ -28,13 +28,16 @@ section[data-testid="stSidebar"] {
     border-radius: 16px;
     box-shadow: 0px 6px 15px rgba(0,0,0,0.12);
     margin-top: 20px;
+    color: #2F2F2F;   /* 👈 THIS fixes the issue */
 }
+
 
 /* Titles */
 .law-title {
-    color: #817D7E;
+    color: #3E3E3E;
     font-weight: 700;
 }
+
 
 /* Buttons */
 .stButton > button {
