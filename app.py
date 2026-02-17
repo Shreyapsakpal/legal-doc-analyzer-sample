@@ -89,9 +89,13 @@ if "sections" not in st.session_state:
         "summary": ""
     }
 
+
+
+# ---------- STYLING ----------
 st.markdown("""
 <style>
-
+            <style>
+            
 /* Center main block and reduce width */
 .block-container {
     max-width: 850px;
@@ -112,12 +116,8 @@ div[data-testid="stForm"] {
 }
 
 </style>
-""", unsafe_allow_html=True)
 
 
-# ---------- STYLING ----------
-st.markdown("""
-<style>
             
             
 
