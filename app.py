@@ -90,11 +90,12 @@ if "sections" not in st.session_state:
     }
 
 
+
 # ---------- STYLING ----------
 st.markdown("""
 <style>
-
-/* Light soft background */
+            
+            /* Light soft background */
 [data-testid="stAppViewContainer"] {
     background: linear-gradient(
         180deg,
@@ -147,17 +148,39 @@ h1, h2, h3, h4, h5, h6, p, label {
     border: none;
 }
 
-/* Sidebar keep soft */
+/* Sidebar background */
 section[data-testid="stSidebar"] {
     background: linear-gradient(
         180deg,
         rgba(220, 235, 255, 0.95),
         rgba(200, 225, 255, 0.95)
     );
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
+/* Sidebar text */
 section[data-testid="stSidebar"] * {
     color: #0A1931 !important;
+}
+
+/* Sidebar buttons */
+section[data-testid="stSidebar"] .stButton > button {
+    background-color: #8FB6FF;
+    color: #0A1931;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+/* Sidebar expanders */
+section[data-testid="stSidebar"] .streamlit-expanderHeader {
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 10px;
+}
+
+/* Sidebar divider lines */
+section[data-testid="stSidebar"] hr {
+    border-color: rgba(10, 25, 49, 0.1);
 }
 
 </style>
@@ -167,20 +190,14 @@ section[data-testid="stSidebar"] * {
 
 
 
-
-
 # ---------- LOGIN / REGISTER ----------
 if not st.session_state.logged_in:
-   
-   st.markdown("<h2 style='text-align:center; font-weight:600;'>AI Legal Doc Analyzer</h2>", unsafe_allow_html=True)
-   st.markdown("<p style='text-align:center; color:gray;'>⚚ Secure Access Portal ⚚</p>", unsafe_allow_html=True)
+    st.title("🔐 Login / Register")
 
+    tab1, tab2 = st.tabs(["Login", "Register"])
 
-
-tab1, tab2 = st.tabs(["Login", "Register"])
-
-with tab1:
-    username = st.text_input("Username", key="login_user")
+    with tab1:
+     username = st.text_input("Username", key="login_user")
     password = st.text_input("Password", type="password", key="login_pass")
 
     if st.button("Login"):
@@ -197,7 +214,7 @@ with tab1:
 
 
 
-with tab2:
+    with tab2:
         new_user = st.text_input("New Username")
         new_pass = st.text_input("New Password", type="password")
 
@@ -206,7 +223,7 @@ with tab2:
                 st.success("Account created! Please login.")
             else:
                 st.error("Username already exists")
-st.stop() # ⛔ VERY IMPORTANT (stops analyzer from loading)
+    st.stop() # ⛔ VERY IMPORTANT (stops analyzer from loading)
 
    # ---------- SIDEBAR : ACCOUNT DETAILS ----------
 if st.session_state.logged_in:
