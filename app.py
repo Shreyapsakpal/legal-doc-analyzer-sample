@@ -95,6 +95,15 @@ if "sections" not in st.session_state:
 st.markdown("""
 <style>
 
+/* MAIN BACKGROUND (Login page look) */
+.stApp {
+    background: linear-gradient(
+        135deg,
+        #667eea 0%,
+        #764ba2 100%
+    );
+}
+
 /* Sidebar background */
 section[data-testid="stSidebar"] {
     background: linear-gradient(
