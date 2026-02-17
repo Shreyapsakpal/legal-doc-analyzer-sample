@@ -130,47 +130,79 @@ section[data-testid="stSidebar"] hr {
     border-color: rgba(10, 25, 49, 0.1);
 }
 
+            /* Login Center UI */
+.login-wrapper {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #eef2ff;
+}
+
+.login-card {
+    background: white;
+    padding: 35px;
+    border-radius: 15px;
+    width: 380px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+
+.login-title {
+    text-align: center;
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.login-subtitle {
+    text-align: center;
+    color: #6b7280;
+    margin-bottom: 25px;
+}
+
+
 </style>
 """, unsafe_allow_html=True)
 
 
-
-
-
 # ---------- LOGIN / REGISTER ----------
 if not st.session_state.logged_in:
-    st.title("🔐 Login / Register")
+
+    st.markdown("<div class='login-wrapper'><div class='login-card'>", unsafe_allow_html=True)
+
+    st.markdown("<div class='login-title'>AI Legal Document Analyzer</div>", unsafe_allow_html=True)
+    st.markdown("<div class='login-subtitle'>Secure Legal Analysis Platform</div>", unsafe_allow_html=True)
 
     tab1, tab2 = st.tabs(["Login", "Register"])
 
     with tab1:
-     username = st.text_input("Username", key="login_user")
-    password = st.text_input("Password", type="password", key="login_pass")
+        username = st.text_input("Username", key="login_user")
+        password = st.text_input("Password", type="password", key="login_pass")
 
-    if st.button("Login"):
-        user = authenticate_user(username, password)
+        if st.button("Sign In", use_container_width=True):
+            user = authenticate_user(username, password)
 
-        if user:
-            st.session_state.logged_in = True
-            st.session_state.username = username
-            st.success("Login successful")
-            st.rerun()
-        else:
-            st.error("Invalid credentials")
-
-
-
+            if user:
+                st.session_state.logged_in = True
+                st.session_state.username = username
+                st.success("Login successful")
+                st.rerun()
+            else:
+                st.error("Invalid credentials")
 
     with tab2:
         new_user = st.text_input("New Username")
         new_pass = st.text_input("New Password", type="password")
 
-        if st.button("Register"):
+        if st.button("Register", use_container_width=True):
             if create_user(new_user, new_pass):
                 st.success("Account created! Please login.")
             else:
                 st.error("Username already exists")
-    st.stop() # ⛔ VERY IMPORTANT (stops analyzer from loading)
+
+    st.markdown("</div></div>", unsafe_allow_html=True)
+    st.stop()
+
 
    # ---------- SIDEBAR : ACCOUNT DETAILS ----------
 if st.session_state.logged_in:
@@ -491,4 +523,3 @@ with tab6:
    
 
 
-st.markdown("</div>", unsafe_allow_html=True)
