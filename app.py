@@ -94,32 +94,6 @@ if "sections" not in st.session_state:
 # ---------- STYLING ----------
 st.markdown("""
 <style>
-            <style>
-            
-/* Center main block and reduce width */
-.block-container {
-    max-width: 850px;
-    padding-top: 2rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    margin: auto;
-}
-
-/* Fix text visibility */
-h1, h2, h3, h4, h5, h6, p, label {
-    color: #0A1931 !important;
-}
-
-/* Reduce card/container width feeling */
-div[data-testid="stForm"] {
-    padding: 1.5rem 1.5rem 1rem 1.5rem;
-}
-
-</style>
-
-
-            
-            
 
 /* Sidebar background */
 section[data-testid="stSidebar"] {
