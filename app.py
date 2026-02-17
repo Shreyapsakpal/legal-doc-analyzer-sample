@@ -101,7 +101,12 @@ st.markdown("""
         #eef2f7 0%,
         #dfe7f2 100%
     );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
+
 
 /* Center everything */
 .main > div {
@@ -115,9 +120,11 @@ st.markdown("""
     padding: 35px 40px;
     border-radius: 14px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-    max-width: 520px;   /* smaller width */
-    margin-top: 60px;
+    max-width: 520px;
+    width: 100%;
+    margin: 0 !important;
 }
+
 
 /* Fix text visibility */
 h1, h2, h3, h4, h5, h6, p, label {
