@@ -115,8 +115,8 @@ st.markdown("""
     padding: 40px !important;
     border-radius: 14px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-    max-width: 320px;
-    width: 90%;
+    max-width: 380px;
+    width: 100%;
     margin: auto !important;
     text-align: center;
 }
