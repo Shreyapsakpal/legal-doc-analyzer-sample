@@ -90,29 +90,43 @@ if "sections" not in st.session_state:
     }
 
 
-
 # ---------- STYLING ----------
 st.markdown("""
 <style>
 
-/* MAIN BACKGROUND (Login page look) */
-.stApp {
+/* Main page background (like Image 1 soft light theme) */
+[data-testid="stAppViewContainer"] {
     background: linear-gradient(
-        135deg,
-        #667eea 0%,
-        #764ba2 100%
+        180deg,
+        #eef2f7 0%,
+        #dfe7f2 100%
     );
 }
 
-/* Sidebar background */
+/* Center content area */
+.main > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* White card container effect */
+.block-container {
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    max-width: 700px;
+    margin-top: 40px;
+}
+
+/* Sidebar background (keep your original soft blue) */
 section[data-testid="stSidebar"] {
     background: linear-gradient(
         180deg,
         rgba(220, 235, 255, 0.95),
         rgba(200, 225, 255, 0.95)
     );
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
 }
 
 /* Sidebar text */
@@ -120,27 +134,27 @@ section[data-testid="stSidebar"] * {
     color: #0A1931 !important;
 }
 
-/* Sidebar buttons */
-section[data-testid="stSidebar"] .stButton > button {
-    background-color: #8FB6FF;
-    color: #0A1931;
+/* Buttons */
+.stButton > button {
+    background-color: #2F5BEA;
+    color: white;
     border-radius: 10px;
     font-weight: 600;
+    padding: 8px 20px;
+    border: none;
 }
 
-/* Sidebar expanders */
-section[data-testid="stSidebar"] .streamlit-expanderHeader {
-    background-color: rgba(255, 255, 255, 0.85);
+/* Inputs */
+.stTextInput input,
+.stTextArea textarea {
     border-radius: 10px;
-}
-
-/* Sidebar divider lines */
-section[data-testid="stSidebar"] hr {
-    border-color: rgba(10, 25, 49, 0.1);
+    border: 1px solid #d0d7e2;
+    padding: 8px;
 }
 
 </style>
 """, unsafe_allow_html=True)
+
 
 
 
