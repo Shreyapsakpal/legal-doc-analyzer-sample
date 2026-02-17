@@ -180,10 +180,10 @@ if not st.session_state.logged_in:
 tab1, tab2 = st.tabs(["Login", "Register"])
 
 with tab1:
-     username = st.text_input("Username", key="login_user")
-password = st.text_input("Password", type="password", key="login_pass")
+    username = st.text_input("Username", key="login_user")
+    password = st.text_input("Password", type="password", key="login_pass")
 
-if st.button("Login"):
+    if st.button("Login"):
         user = authenticate_user(username, password)
 
         if user:
