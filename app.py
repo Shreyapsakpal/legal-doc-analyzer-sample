@@ -171,8 +171,9 @@ section[data-testid="stSidebar"] * {
 
 # ---------- LOGIN / REGISTER ----------
 if not st.session_state.logged_in:
-   st.markdown("<h2 style='text-align:center; font-weight:600;'>Crime Law Explorer</h2>", unsafe_allow_html=True)
-   st.markdown("<p style='text-align:center; color:gray;'>Secure Access Portal</p>", unsafe_allow_html=True)
+   
+   st.markdown("<h2 style='text-align:center; font-weight:600;'>AI Legal Doc Analyzer</h2>", unsafe_allow_html=True)
+   st.markdown("<p style='text-align:center; color:gray;'>⚚ Secure Access Portal ⚚</p>", unsafe_allow_html=True)
 
 
 
