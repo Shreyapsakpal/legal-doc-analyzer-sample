@@ -89,64 +89,37 @@ if "sections" not in st.session_state:
         "summary": ""
     }
 
+st.markdown("""
+<style>
+
+/* Center main block and reduce width */
+.block-container {
+    max-width: 850px;
+    padding-top: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin: auto;
+}
+
+/* Fix text visibility */
+h1, h2, h3, h4, h5, h6, p, label {
+    color: #0A1931 !important;
+}
+
+/* Reduce card/container width feeling */
+div[data-testid="stForm"] {
+    padding: 1.5rem 1.5rem 1rem 1.5rem;
+}
+
+</style>
+""", unsafe_allow_html=True)
 
 
 # ---------- STYLING ----------
 st.markdown("""
 <style>
             
-            /* Light soft background */
-[data-testid="stAppViewContainer"] {
-    background: linear-gradient(
-        180deg,
-        #eef2f7 0%,
-        #dfe7f2 100%
-    );
-}
-
-/* Center everything */
-.main > div {
-    display: flex;
-    justify-content: center;
-}
-
-/* Smaller white card */
-.block-container {
-    background: white;
-    padding: 40px !important;
-    border-radius: 14px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-    max-width: 380px;
-    width: 100%;
-    margin: auto !important;
-    text-align: center;
-}
-
-
-/* Fix text visibility */
-h1, h2, h3, h4, h5, h6, p, label {
-    color: #1f2937 !important;
-}
-
-/* Input fields */
-.stTextInput input,
-.stTextArea textarea {
-    border-radius: 8px;
-    border: 1px solid #cbd5e1;
-    padding: 10px;
-    background-color: #ffffff;
-    color: #111827;
-}
-
-/* Button */
-.stButton > button {
-    background-color: #2F5BEA;
-    color: white;
-    border-radius: 8px;
-    font-weight: 600;
-    padding: 8px 18px;
-    border: none;
-}
+            
 
 /* Sidebar background */
 section[data-testid="stSidebar"] {
