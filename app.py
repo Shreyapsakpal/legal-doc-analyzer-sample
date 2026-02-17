@@ -94,7 +94,7 @@ if "sections" not in st.session_state:
 st.markdown("""
 <style>
 
-/* Main page background (like Image 1 soft light theme) */
+/* Light soft background */
 [data-testid="stAppViewContainer"] {
     background: linear-gradient(
         180deg,
@@ -103,24 +103,48 @@ st.markdown("""
     );
 }
 
-/* Center content area */
+/* Center everything */
 .main > div {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
 }
 
-/* White card container effect */
+/* Smaller white card */
 .block-container {
     background: white;
-    padding: 40px;
-    border-radius: 16px;
+    padding: 35px 40px;
+    border-radius: 14px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-    max-width: 700px;
-    margin-top: 40px;
+    max-width: 520px;   /* smaller width */
+    margin-top: 60px;
 }
 
-/* Sidebar background (keep your original soft blue) */
+/* Fix text visibility */
+h1, h2, h3, h4, h5, h6, p, label {
+    color: #1f2937 !important;
+}
+
+/* Input fields */
+.stTextInput input,
+.stTextArea textarea {
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    padding: 10px;
+    background-color: #ffffff;
+    color: #111827;
+}
+
+/* Button */
+.stButton > button {
+    background-color: #2F5BEA;
+    color: white;
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border: none;
+}
+
+/* Sidebar keep soft */
 section[data-testid="stSidebar"] {
     background: linear-gradient(
         180deg,
@@ -129,27 +153,8 @@ section[data-testid="stSidebar"] {
     );
 }
 
-/* Sidebar text */
 section[data-testid="stSidebar"] * {
     color: #0A1931 !important;
-}
-
-/* Buttons */
-.stButton > button {
-    background-color: #2F5BEA;
-    color: white;
-    border-radius: 10px;
-    font-weight: 600;
-    padding: 8px 20px;
-    border: none;
-}
-
-/* Inputs */
-.stTextInput input,
-.stTextArea textarea {
-    border-radius: 10px;
-    border: 1px solid #d0d7e2;
-    padding: 8px;
 }
 
 </style>
@@ -160,17 +165,21 @@ section[data-testid="stSidebar"] * {
 
 
 
+
 # ---------- LOGIN / REGISTER ----------
 if not st.session_state.logged_in:
-    st.title("🔐 Login / Register")
+   st.markdown("<h2 style='text-align:center; font-weight:600;'>Crime Law Explorer</h2>", unsafe_allow_html=True)
+   st.markdown("<p style='text-align:center; color:gray;'>Secure Access Portal</p>", unsafe_allow_html=True)
 
-    tab1, tab2 = st.tabs(["Login", "Register"])
 
-    with tab1:
+
+tab1, tab2 = st.tabs(["Login", "Register"])
+
+with tab1:
      username = st.text_input("Username", key="login_user")
-    password = st.text_input("Password", type="password", key="login_pass")
+password = st.text_input("Password", type="password", key="login_pass")
 
-    if st.button("Login"):
+if st.button("Login"):
         user = authenticate_user(username, password)
 
         if user:
@@ -184,7 +193,7 @@ if not st.session_state.logged_in:
 
 
 
-    with tab2:
+with tab2:
         new_user = st.text_input("New Username")
         new_pass = st.text_input("New Password", type="password")
 
@@ -193,7 +202,7 @@ if not st.session_state.logged_in:
                 st.success("Account created! Please login.")
             else:
                 st.error("Username already exists")
-    st.stop() # ⛔ VERY IMPORTANT (stops analyzer from loading)
+st.stop() # ⛔ VERY IMPORTANT (stops analyzer from loading)
 
    # ---------- SIDEBAR : ACCOUNT DETAILS ----------
 if st.session_state.logged_in:
