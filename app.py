@@ -101,12 +101,7 @@ st.markdown("""
         #eef2f7 0%,
         #dfe7f2 100%
     );
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
 }
-
 
 /* Center everything */
 .main > div {
@@ -117,12 +112,13 @@ st.markdown("""
 /* Smaller white card */
 .block-container {
     background: white;
-    padding: 35px 40px;
+    padding: 40px !important;
     border-radius: 14px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
     max-width: 520px;
     width: 100%;
-    margin: 0 !important;
+    margin: auto !important;
+    text-align: center;
 }
 
 
